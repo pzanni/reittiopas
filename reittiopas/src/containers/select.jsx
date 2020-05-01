@@ -1,22 +1,28 @@
 import React from 'react';
+import { Select } from 'semantic-ui-react'
 
-function Select(props) {
-    const getOptions = (options) => {
-        let option_elements = [];
-        options.forEach(option => {
-            option_elements.push(<option key={option} value={option}>{option}</option>)
-        });
-        return option_elements;
-    }
+export const SelectStop = (props) => {
 
-    return (
-        <div>
-            <label>{props.label}</label>
-            <select id="select" onChange={(event) => props.onChange(event.target.value)}>
-                {getOptions(props.options)}
-            </select> 
-        </div>
-    )
-}
+  const getOptions = (list) => {
+    let opts = [];
+    list.forEach(item => {
+      opts.push({
+        key: item,
+        value: item,
+        text: 'Stop ' + item
+      })
+    })
+    return opts;
+  }
 
-export default Select;
+  return (
+    <div>
+      <label>{props.label}</label>
+      <Select
+        id="select"
+        onChange={(event) => props.onChange(event.target.value)}
+        options={getOptions(props.options)}
+      />
+    </div>
+  )
+};

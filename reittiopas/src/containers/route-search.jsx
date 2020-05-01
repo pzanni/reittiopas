@@ -1,16 +1,14 @@
-import React, { useState }  from 'react';
-import Select from './select';
-import { getAllStops } from '../backend/mock-backend/stopsService';
+import React, { useState } from 'react';
+import { Grid } from 'semantic-ui-react'
 import { getFastestRoute, getLinesForRoute } from '../backend/mock-backend/routeService';
-import Routes from'./routes';
+import Routes from './routes';
+import { StopSelection } from './stop-selection';
 
-function RouteSearch (props) {
-  const [startStop, setStartStop] = useState('');
-  const [endStop, setEndStop] = useState('');
+export const RouteSearch = () => {
   const [route, setRoute] = useState([])
   const [routeLines, setRouteLines] = useState([])
 
-  const onRouteSearch = () => {
+  const onRouteSearch = (startStop, endStop) => {
     console.log('searching route ' + startStop + ' -> ' + endStop)
     let fastestRoute = getFastestRoute(startStop, endStop);
     let fastestRouteLines = getLinesForRoute(fastestRoute);
@@ -19,29 +17,16 @@ function RouteSearch (props) {
   }
 
   return (
-        <div>
-          Hello {props.name}! Start by selecting stops :)
-
-          <Select 
-            options={getAllStops()}
-            onChange={setStartStop}
-            label={'Aloittava pysäkki'}
-            selected={startStop}
-          />
-
-          <Select
-            options={getAllStops()}
-            onChange={setEndStop}
-            label={'Lopettava pysäkki'}
-            selected={endStop}
-          />
-
-          <button disabled={startStop === '' || endStop === ''} onClick={() => onRouteSearch()}>Hae reitti</button>
-
-          <Routes route={route} routeLines={routeLines} />
-
-        </div>
-      ) 
-}
-
-export default RouteSearch;
+    <div>
+      <Grid columns={3} divided>
+        <Grid.Row centered>
+          Start by selecting stops!
+        </Grid.Row>
+        <Grid.Row centered>
+          <StopSelection onSearch={onRouteSearch} />
+        </Grid.Row>
+      </Grid>
+      <Routes route={route} routeLines={routeLines} />
+    </div>
+  );
+};
