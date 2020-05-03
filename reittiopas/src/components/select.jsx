@@ -17,7 +17,7 @@ export const SelectStop = (props) => {
 
   return (
     <div>
-      <label>{props.label}</label>
+      <label className="select-label">{props.label}</label>
       <Select
         id="select"
         onChange={(event) => props.onChange(event.target.value)}

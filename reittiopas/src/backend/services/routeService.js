@@ -1,10 +1,13 @@
-const getFastestRoute = (start, end, lines) => {
-    // Dijkstra comes here
-    // start: string (start point)
-    // end: string (end point)
-    // lines: array (bus lines you can use)
-}
+let a=55
+a=a+5
+var b = "aaaa"
+var z = "bbb"
+var c = b+z
+var d = 5
+console.log(a+""+d +"   "+ c)
 
-const getLinesForRoute = (route) => {
-  
-}
+const fs=require('fs');
+
+let rawdata=fs.readFileSync('./reittiopas.json');
+let student = JSON.parse(rawdata);
+console.log(student);

@@ -1,31 +1,28 @@
 import React from 'react';
+import { Grid } from 'semantic-ui-react'
+import { BusLine } from '../components/busLine';
 
-function Routes(props) {
+export const Routes = (props) => {
 
-  function getBus(line) {
-    let stops = [];
-    line.stops.forEach(stop => stops.push(
-      <span key={stop}>{stop}</span>
-    ))
-    return (
-      <div key={line.name}>
-        <b>Bus:</b> {line.name}
-        <b>Stops:</b> {stops}
-      </div>
-    )
-  }
-
-  function getBusses() {
+  const getBusses = () => {
     let busses = [];
     props.routeLines.forEach(line => {
-      busses.push(getBus(line));
+      busses.push(
+        <Grid.Row key={line.name} >
+          <BusLine line={line} />
+        </Grid.Row>
+      );
     });
     return busses;
   }
 
-  if (props.route.length > 0) return <div> {getBusses()} </div>
+  if (props.route.length > 0) return (
+    <div className="routes"> 
+      <Grid>
+        {getBusses()} 
+      </Grid>
+    </div>
+  );
   else return <div />
 
 }
-
-export default Routes;

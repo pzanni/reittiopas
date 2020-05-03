@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Grid } from 'semantic-ui-react'
 import { getFastestRoute, getLinesForRoute } from '../backend/mock-backend/routeService';
-import Routes from './routes';
+import { Routes } from './routes';
 import { StopSelection } from './stop-selection';
 
 export const RouteSearch = () => {
@@ -18,15 +18,17 @@ export const RouteSearch = () => {
 
   return (
     <div>
-      <Grid columns={3} divided>
+      <Grid>
         <Grid.Row centered>
-          Start by selecting stops!
+          <div className="title">Reittiopas opastaa reitin.</div>
         </Grid.Row>
         <Grid.Row centered>
           <StopSelection onSearch={onRouteSearch} />
         </Grid.Row>
+        <Grid.Row centered>
+          <Routes route={route} routeLines={routeLines} />
+        </Grid.Row>
       </Grid>
-      <Routes route={route} routeLines={routeLines} />
     </div>
   );
 };

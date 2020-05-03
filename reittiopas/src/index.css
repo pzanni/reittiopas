@@ -13,10 +13,39 @@ code {
     monospace;
 }
 
-.stop-selection {
+.title {
+  font-family: cursive;
+  font-size: 40px;
+  padding: 2%;
+  line-height: initial;
+}
+
+.container {
   background: white;
   border: 0 solid;
   border-radius: 5px 5px 5px 5px;
   padding: 10px;
+  box-shadow: 3px 13px 26px -12px black;
   width: 50%;
+}
+
+.busline {
+  width: 100%;
+  border: 2px solid;
+}
+
+.stop-selection {
+  width: 50%;
+}
+
+.select-label {
+  padding-right: 10px;
+}
+
+.punainen {
+  border: red 2px solid;
+}
+
+.keltainen {
+  border: yellow 2px solid;
 }

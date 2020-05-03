@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { SelectStop } from './select';
+import { SelectStop } from '../components/select';
 import { Grid, Button } from 'semantic-ui-react';
 import { getAllStops } from '../backend/mock-backend/stopsService';
 
@@ -8,7 +8,7 @@ export const StopSelection = ({ onSearch }) => {
   const [endStop, setEndStop] = useState('');  
 
   return (
-    <div className="stop-selection">
+    <div className="container">
       <Grid columns={2} padded>
         <Grid.Column>
           <SelectStop
@@ -26,12 +26,12 @@ export const StopSelection = ({ onSearch }) => {
             selected={endStop}
           />
         </Grid.Column>
-      </Grid>
-      <Grid columns={1} centered>
-      <Button
-        disabled={startStop === '' || endStop === ''}
-        onClick={() => onSearch(startStop, endStop)}>Hae reitti
-        </Button>
+        <Grid.Row centered>
+          <Button
+            disabled={startStop === '' || endStop === ''}
+            onClick={() => onSearch(startStop, endStop)}>Hae reitti
+          </Button>
+        </Grid.Row>
       </Grid>
     </div>
   )
